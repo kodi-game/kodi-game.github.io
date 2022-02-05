@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+}
+#displayArea {
+  position: fixed;
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  min-width: 100%;
+}
+#verticallyCentered {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  min-width: 100%;
+  transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+}
+#horizontallyCentered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+#kodiLogo,
+#videoPreview {
+  width: 305px;
+  height: 305px;
+}
+body {
+  color: #ffffff;
+  background: #111111;
+}
+#contentArea {
+  font-size: 36pt;
+}
+#videoPreview {
+  display: none;
+}
+#contentArea {
+  cursor: pointer;
+}
