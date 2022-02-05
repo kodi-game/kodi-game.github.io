@@ -10,7 +10,10 @@ async function onClient() {
       displayArea.style.display = "none";
     }
     videoPreview.style.display = "block";
-    const qrScanner = new QrScanner(videoPreview, (result) => alert(`decoded qr code: ${result}`), {});
+    const qrScanner = new QrScanner(videoPreview, (result) => {
+      console.log(result);
+      alert(`decoded qr code: ${result}`);
+    }, {});
     await qrScanner.start();
   }
 }
