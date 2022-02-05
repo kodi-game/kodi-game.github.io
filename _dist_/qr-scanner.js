@@ -118,7 +118,10 @@ const _QrScanner = class {
     let openedStream;
     try {
       if (requestLabels && (await enumerateCameras()).every((camera) => !camera.label)) {
-        openedStream = await navigator.mediaDevices.getUserMedia({audio: false, video: true});
+        openedStream = await navigator.mediaDevices.getUserMedia({
+          audio: false,
+          video: true
+        });
       }
     } catch (e) {
     }
@@ -373,7 +376,12 @@ const _QrScanner = class {
     }
   }
   setGrayscaleWeights(red, green, blue, useIntegerApproximation = true) {
-    _QrScanner._postWorkerMessage(this._qrEnginePromise, "grayscaleWeights", {red, green, blue, useIntegerApproximation});
+    _QrScanner._postWorkerMessage(this._qrEnginePromise, "grayscaleWeights", {
+      red,
+      green,
+      blue,
+      useIntegerApproximation
+    });
   }
   setInversionMode(inversionMode) {
     _QrScanner._postWorkerMessage(this._qrEnginePromise, "inversionMode", inversionMode);
@@ -544,17 +552,27 @@ const _QrScanner = class {
     if (!navigator.mediaDevices)
       throw "Camera not found.";
     const preferenceType = /^(environment|user)$/.test(this._preferredCamera) ? "facingMode" : "deviceId";
-    const constraintsWithoutCamera = [{
-      width: {min: 1024}
-    }, {
-      width: {min: 768}
-    }, {}];
+    const constraintsWithoutCamera = [
+      {
+        width: {min: 1024}
+      },
+      {
+        width: {min: 768}
+      },
+      {}
+    ];
     const constraintsWithCamera = constraintsWithoutCamera.map((constraint) => Object.assign({}, constraint, {
       [preferenceType]: {exact: this._preferredCamera}
     }));
-    for (const constraints of [...constraintsWithCamera, ...constraintsWithoutCamera]) {
+    for (const constraints of [
+      ...constraintsWithCamera,
+      ...constraintsWithoutCamera
+    ]) {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({video: constraints, audio: false});
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: constraints,
+          audio: false
+        });
         const facingMode = this._getFacingMode(stream) || (constraints.facingMode ? this._preferredCamera : this._preferredCamera === "environment" ? "user" : "environment");
         return {stream, facingMode};
       } catch (e) {

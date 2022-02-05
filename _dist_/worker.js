@@ -1,6 +1,6 @@
 import jsQR from "../_snowpack/pkg/jsqr.js";
 let inversionAttempts = "dontInvert";
-let grayscaleWeights = {
+const grayscaleWeights = {
   red: 77,
   green: 150,
   blue: 29,
