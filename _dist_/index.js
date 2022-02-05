@@ -4,4 +4,3 @@ console.log("-------------------------------------");
 window.addEventListener("load", async () => {
   console.log("Entering application");
 });
-export {};
