@@ -12,6 +12,7 @@ async function onClient() {
     videoPreview.style.display = "block";
     const qrScanner = new QrScanner(videoPreview, (result) => {
       alert(`Decoded QR code: ${result.data}`);
+      qrScanner.stop();
     }, {});
     await qrScanner.start();
   }
